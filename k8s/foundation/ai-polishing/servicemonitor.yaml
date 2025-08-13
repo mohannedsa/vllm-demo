@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-polishing
+  namespace: foundation
+  labels:
+    team: 'observability'
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: ai-polishing
+      app.kubernetes.io/name: ai-polishing
+  namespaceSelector:
+    matchNames:
+      - foundation
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      honorLabels: false
