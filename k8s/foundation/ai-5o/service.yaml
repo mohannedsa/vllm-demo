@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-5o
+  namespace: foundation
+  labels:
+    app.kubernetes.io/instance: ai-5o
+    app.kubernetes.io/name: ai-5o
+    app.kubernetes.io/component: vllm-model
+  annotations:
+    created-by: "Automated By Pipeline"
+    team: "AI Team"
+    exposure-type: internal
+    creator-email: runtest1122@gmail.com
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8000
+      name: http
+  selector:
+    app.kubernetes.io/instance: ai-5o
+    app.kubernetes.io/name: ai-5o

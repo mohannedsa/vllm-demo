@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ai-5o
+  namespace: foundation
+  labels:
+    team: observability
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: ai-5o
+      app.kubernetes.io/name: ai-5o
+  namespaceSelector:
+    matchNames:
+      - foundation
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+      honorLabels: false
